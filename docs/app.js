@@ -23,8 +23,33 @@ console.log('hello cardio');
    const names = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
    console.table(names);
 
-   const sorted = inventors.sort((a, b)=> a.year < b.year);
-   console.log(sorted);
+   const sorted = inventors.sort((a,b) => a.year > b.year ? 1 : -1);
+   console.table(sorted);
+
+   const totalAge = inventors.reduce((total, inventor) => total + (inventor.passed - inventor.year), 0);
+   console.log(totalAge);
+
+   const age = inventors.sort((a,b)=> (a.passed - a.year) > (b.passed - b.year)? 1 : -1);
+   console.table(age);
+
+
+   const lastNameFirst = people.sort((lastOne, nextOne) => {
+     const [aLast, aFirst] = lastOne.split(', ');
+     const [bLast, bFirst] = nextOne.split(', ');
+     return aLast > bLast ? 1 : -1;
+   });
+   console.log(lastNameFirst);
+
    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+   const transportation = data.reduce(function(obj, item) {
+     if (!obj[item]) {
+       obj[item] = 0;
+     }
+     obj[item]++;
+     return obj;
+   }, {});
+
+   console.log(transportation);
 
 },{}]},{},[1]);
